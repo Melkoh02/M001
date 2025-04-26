@@ -1,5 +1,5 @@
 import {makeAutoObservable} from 'mobx';
-import {User} from '../lib/types/user.ts';
+import {User} from '../types/user.ts';
 
 export class UserStore {
   user: User | null = null;
