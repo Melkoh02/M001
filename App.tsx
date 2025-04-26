@@ -2,7 +2,7 @@ import React from 'react';
 import {createContext} from 'react';
 import BaseLayout from './src/components/templates/BaseLayout';
 import {Text} from 'react-native';
-import rootStore from './src/store/rootStore.ts';
+import rootStore from './src/stores/rootStore.ts';
 
 export const StoreContext = createContext(rootStore);
 
