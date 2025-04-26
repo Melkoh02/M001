@@ -1,17 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import BaseLayout from './src/components/templates/BaseLayout';
+import {Text} from 'react-native';
 
-function App(): React.JSX.Element {
+const App = () => {
   return (
-    <View style={styles.container} />
+    <BaseLayout>
+      <Text> Hello World </Text>
+    </BaseLayout>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-});
+};
 
 export default App;
