@@ -1,5 +1,10 @@
+import {MD3DarkTheme} from 'react-native-paper';
+import {sharedColors} from './sharedColors';
+
 export const darkTheme = {
-  mode: 'dark',
-  backgroundColor: '#000000',
-  textColor: '#FFFFFF',
+  ...MD3DarkTheme,
+  colors: {
+    ...MD3DarkTheme.colors,
+    ...sharedColors,
+  },
 };

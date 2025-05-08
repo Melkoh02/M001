@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import {StoreContext} from '../../pages/App.tsx';
+import {StoreContext} from '../../../index.tsx';
 
 export const useStore = () => {
   return useContext(StoreContext);
