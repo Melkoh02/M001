@@ -1,6 +1,4 @@
 import {useContext} from 'react';
 import {StoreContext} from '../../../index.tsx';
 
-export const useStore = () => {
-  return useContext(StoreContext);
-};
+export const useStore = () => useContext(StoreContext);

@@ -1,5 +1,10 @@
+import {MD3LightTheme} from 'react-native-paper';
+import {sharedColors} from './sharedColors';
+
 export const customTheme = {
-  mode: 'custom',
-  backgroundColor: '#1e1e2f',
-  textColor: '#F0DB4F',
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    ...sharedColors,
+  },
 };

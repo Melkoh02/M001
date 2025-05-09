@@ -1,25 +1,24 @@
-/**
- * @format
- */
-
+import React, {createContext} from 'react';
 import {AppRegistry} from 'react-native';
-import App from './src/pages/App';
-import {name as appName} from './app.json';
 import {PaperProvider} from 'react-native-paper';
-import {createContext} from 'react';
+import {observer} from 'mobx-react-lite';
+
+import App from './src/pages/App';
 import rootStore from './src/lib/stores/rootStore';
-import {lightTheme} from './src/themes/light';
+import {name as appName} from './app.json';
 
 export const StoreContext = createContext(rootStore);
 
-const theme = lightTheme;
+const PaperWrapper = observer(({children}: {children: React.ReactNode}) => (
+  <PaperProvider theme={rootStore.themeStore.theme}>{children}</PaperProvider>
+));
 
 function Main() {
   return (
     <StoreContext.Provider value={rootStore}>
-      <PaperProvider theme={theme}>
+      <PaperWrapper>
         <App />
-      </PaperProvider>
+      </PaperWrapper>
     </StoreContext.Provider>
   );
 }
