@@ -3,6 +3,7 @@ import {sharedColors} from './sharedColors';
 
 export const darkTheme = {
   ...MD3DarkTheme,
+  scheme: 'dark',
   colors: {
     ...MD3DarkTheme.colors,
     ...sharedColors,
