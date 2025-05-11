@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from './stacks/HomeStack';
 import SettingsStack from './stacks/SettingsStack';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,9 +18,9 @@ export default function TabNavigator() {
         component={HomeStack}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="home-outline" color={color} size={size} />
-          ),
+          // tabBarIcon: ({color, size}) => (
+          //   <Icon name="home-outline" color={color} size={size} />
+          // ),
         }}
       />
       <Tab.Screen
@@ -28,9 +28,9 @@ export default function TabNavigator() {
         component={SettingsStack}
         options={{
           tabBarLabel: 'Settings',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="cog-outline" color={color} size={size} />
-          ),
+          // tabBarIcon: ({color, size}) => (
+          //   <Icon name="cog-outline" color={color} size={size} />
+          // ),
         }}
       />
     </Tab.Navigator>
