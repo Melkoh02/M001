@@ -45,9 +45,9 @@
 
 ## 4. Persistence & Secure Storage
 
-- ⬜ Setup **@react-native-async-storage/async-storage**
-    - ⬜ Hydrate `rootStore` at launch
-    - ⬜ Throttle-save (`autorun` + `debounce`)
+- ✅ Setup **@react-native-async-storage/async-storage**
+- ⬜ Hydrate `rootStore` at launch
+- ⬜ Throttle-save (`autorun` + `debounce`)
 - ⬜ Secure **JWT / refresh token** with **react-native-keychain**
 - ⬜ Decide on **migration strategy** for breaking store changes
 
@@ -92,9 +92,9 @@
 
 ## 9. Localization (i18n)
 
-- ⬜ Set up **i18next** with JSON language files
-- ⬜ Language switcher UI (Settings → Language)
-- ⬜ Persist user choice to Async-Storage
+- ✅ Set up **i18next** with JSON language files
+- ✅ Language switcher UI (Settings → Language)
+- ✅ Persist user choice to Async-Storage
 - ⬜ RTL support check (Arabic / Hebrew mock)
 
 ---
