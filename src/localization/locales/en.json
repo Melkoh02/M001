@@ -1,0 +1,16 @@
+{
+  "greeting": "Welcome, {{name}}!",
+  "tabNavigator": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "home": {
+    "title": "Home Screen"
+  },
+  "settings": {
+    "title": "Settings Screen",
+    "language": "Language",
+    "switchLanguage": "Switch Language",
+    "toggleTheme": "Toggle Theme"
+  }
+}

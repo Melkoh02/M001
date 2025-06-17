@@ -1,12 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Button} from 'react-native-paper';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
-import {useStore} from '../lib/hooks/useStore.ts';
+import {useTranslation} from 'react-i18next';
 
 export default function HomeScreen() {
   const theme = useTheme();
-  const {themeStore} = useStore();
+  const {t} = useTranslation();
 
   return (
     <View
@@ -15,11 +14,8 @@ export default function HomeScreen() {
         backgroundColor: theme.colors.background,
       }}>
       <Text style={{color: theme.colors.primary, padding: 10}}>
-        Home Screen
+        {t('home.title')}
       </Text>
-      <Button mode="contained-tonal" onPress={themeStore.toggle}>
-        Toggle Theme
-      </Button>
     </View>
   );
 }

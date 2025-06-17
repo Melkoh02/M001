@@ -5,10 +5,12 @@ import SettingsStack from './stacks/SettingsStack';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {BottomNavigation} from 'react-native-paper';
 import {CommonActions} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
+  const {t} = useTranslation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -57,7 +59,7 @@ export default function TabNavigator() {
         name="HomeTab"
         component={HomeStack}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: t('tabNavigator.home'),
           tabBarIcon: ({color, size}) => (
             <Icon name="home" color={color} size={size} />
           ),
@@ -67,7 +69,7 @@ export default function TabNavigator() {
         name="SettingsTab"
         component={SettingsStack}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: t('tabNavigator.settings'),
           tabBarIcon: ({color, size}) => (
             <Icon name="settings" color={color} size={size} />
           ),

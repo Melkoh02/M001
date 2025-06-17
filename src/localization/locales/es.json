@@ -1,0 +1,16 @@
+{
+  "greeting": "¡Bienvenido, {{name}}!",
+  "tabNavigator": {
+    "home": "Inicio",
+    "settings": "Configuraciones"
+  },
+  "home": {
+    "title": "Pantalla de Inicio"
+  },
+  "settings": {
+    "title": "Pantalla de Configuraciones",
+    "language": "Idioma",
+    "switchLanguage": "Cambiar Idioma",
+    "toggleTheme": "Cambia Tema"
+  }
+}
