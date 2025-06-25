@@ -1,11 +1,11 @@
 import client from './client';
 
 /**
- * GET /test/?id=...
+ * GET /test/
  */
 export const getTest = (data: {id?: number; [key: string]: any}) => {
   const {id, ...params} = data;
-  return client.get<string>('/test/', {data});
+  return client.get<string>('/test/test/', {params});
 };
 
 /**
