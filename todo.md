@@ -65,9 +65,9 @@
 
 ## 6. Networking / API Layer
 
-- ⬜ Choose pattern (**RTK Query**, **axios service + hooks**, **react-query**)
-- ⬜ Base client with interceptors (JWT, 401 refresh)
-- ⬜ Reusable `useApi` hook
+- ✅ Choose pattern (**RTK Query**, **axios service + hooks**, **react-query**)
+- ✅ Base client with interceptors (JWT, 401 refresh)
+- ✅ Reusable `useApi` hook
 - ⬜ Generic feedback utility (toast / snackbar / modal) with a `type` prop
 - ⬜ Error boundary component
 
