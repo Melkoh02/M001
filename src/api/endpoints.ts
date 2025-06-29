@@ -1,26 +1,26 @@
-import client from './client';
+// src/api/endpoints.ts
+import client, {wrapRequest} from './client';
 
 /**
  * GET /test/
  */
-export const getTest = (data: {id?: number; [key: string]: any}) => {
-  const {id, ...params} = data;
-  return client.get<string>('/test/test/', {params});
+export const getTest = () => {
+  return wrapRequest(client.get<{test: string}>('/test/test'));
 };
 
 /**
- * GET /test/:id/?otherParam=...
+ * GET /test/:id/?otherParam=…
  */
 export const getTestById = (data: {id: number; [key: string]: any}) => {
   const {id, ...params} = data;
-  return client.get<string>(`/test/${id}/`, {params});
+  return wrapRequest(client.get(`/test/${id}/`, {params}));
 };
 
 /**
  * POST /test/  body: { … }
  */
 export const postTest = (data: {[key: string]: any}) => {
-  return client.post<string>('/test/', data);
+  return wrapRequest(client.post('/test/', data));
 };
 
 /**
@@ -28,7 +28,7 @@ export const postTest = (data: {[key: string]: any}) => {
  */
 export const putTest = (data: {id: number; [key: string]: any}) => {
   const {id, ...body} = data;
-  return client.put<string>(`/test/${id}/`, body);
+  return wrapRequest(client.put(`/test/${id}/`, body));
 };
 
 /**
@@ -36,7 +36,7 @@ export const putTest = (data: {id: number; [key: string]: any}) => {
  */
 export const patchTest = (data: {id: number; [key: string]: any}) => {
   const {id, ...body} = data;
-  return client.patch<string>(`/test/${id}/`, body);
+  return wrapRequest(client.patch(`/test/${id}/`, body));
 };
 
 /**
@@ -44,12 +44,12 @@ export const patchTest = (data: {id: number; [key: string]: any}) => {
  */
 export const deleteTest = (data: {id: number; [key: string]: any}) => {
   const {id, ...params} = data;
-  return client.delete<string>(`/test/${id}/`, {params});
+  return wrapRequest(client.delete(`/test/${id}/`, {params}));
 };
 
 /**
  * GET /tests/?page=…&pageSize=…
  */
 export const listTests = (params: {[key: string]: any}) => {
-  return client.get<string>('/tests/', {params});
+  return wrapRequest(client.get('/tests/', {params}));
 };

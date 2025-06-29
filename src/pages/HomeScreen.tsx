@@ -8,15 +8,22 @@ import useApi from '../lib/hooks/useApi.ts';
 export default function HomeScreen() {
   const theme = useTheme();
   const {t} = useTranslation();
-
   const api = useApi();
-  const data = {id: 12};
+  const [loading, setLoading] = React.useState(true);
 
   const testApiCalls = () => {
-    api
-      .getTest(data)
-      .then(res => console.log('Success:', res.data))
-      .catch(err => console.log('Error:', err));
+    setLoading(true);
+    api.getTest().handle({
+      onSuccess: payload => {
+        console.log('Got back:', payload.test);
+      },
+      onError: err => {
+        console.log('Server replied with an error:', err.response?.status);
+      },
+      successMessage: 'test endpoint succeeded!',
+      errorMessage: 'test endpoint failed!',
+      onFinally: () => setLoading(false),
+    });
   };
 
   return (
