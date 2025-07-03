@@ -4,6 +4,13 @@
     "home": "Inicio",
     "settings": "Configuraciones"
   },
+  "login": {
+    "title": "Ingresar",
+    "loginButton": "Ingresar"
+  },
+  "signUp": {
+    "title": "Registrarse"
+  },
   "home": {
     "title": "Pantalla de Inicio"
   },

@@ -4,6 +4,13 @@
     "home": "Home",
     "settings": "Settings"
   },
+  "login": {
+    "title": "Login",
+    "loginButton": "Login"
+  },
+  "signUp": {
+    "title": "Sign Up"
+  },
   "home": {
     "title": "Home Screen"
   },
