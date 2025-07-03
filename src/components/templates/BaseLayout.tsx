@@ -1,25 +1,35 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, View} from 'react-native';
-import {useTheme} from '../../lib/hooks/useAppTheme.ts';
+import {StatusBar, View} from 'react-native';
+import {
+  Edge,
+  SafeAreaProvider,
+  SafeAreaView,
+} from 'react-native-safe-area-context';
+import {useTheme} from '../../lib/hooks/useAppTheme';
 
 type BaseLayoutProps = {
   children: React.ReactNode;
 };
 
+const insetsEdges: Edge[] = ['top', 'bottom'];
+
 const BaseLayout = ({children}: BaseLayoutProps) => {
   const theme = useTheme();
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: theme.colors.background,
-      }}>
-      <StatusBar
-        barStyle={theme.scheme === 'dark' ? 'light-content' : 'dark-content'}
-      />
-      <View style={{flex: 1}}>{children}</View>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView
+        edges={insetsEdges}
+        style={{
+          flex: 1,
+          backgroundColor: theme.colors.background,
+        }}>
+        <StatusBar
+          barStyle={theme.scheme === 'dark' ? 'light-content' : 'dark-content'}
+        />
+        <View style={{flex: 1}}>{children}</View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
