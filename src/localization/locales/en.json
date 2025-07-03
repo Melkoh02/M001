@@ -18,6 +18,7 @@
     "title": "Settings Screen",
     "language": "Language",
     "switchLanguage": "Switch Language",
-    "toggleTheme": "Toggle Theme"
+    "toggleTheme": "Toggle Theme",
+    "logout": "Log out"
   }
 }

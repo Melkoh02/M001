@@ -53,3 +53,10 @@ export const deleteTest = (data: {id: number; [key: string]: any}) => {
 export const listTests = (params: {[key: string]: any}) => {
   return wrapRequest(client.get('/tests/', {params}));
 };
+
+/**
+ * POST /test/  body: { … }
+ */
+export const login = (data: {[key: string]: any}) => {
+  return wrapRequest(client.post('/authenticate/', data));
+};

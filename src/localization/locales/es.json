@@ -18,6 +18,7 @@
     "title": "Pantalla de Configuraciones",
     "language": "Idioma",
     "switchLanguage": "Cambiar Idioma",
-    "toggleTheme": "Cambia Tema"
+    "toggleTheme": "Cambia Tema",
+    "logout": "Cerrar Sesion"
   }
 }

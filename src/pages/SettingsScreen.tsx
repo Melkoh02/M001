@@ -7,10 +7,11 @@ import {useTheme} from '../lib/hooks/useAppTheme';
 import {useStore} from '../lib/hooks/useStore';
 import {useTranslation} from 'react-i18next';
 import {toggleLanguage} from '../lib/helpers/toggleLanguage.ts';
+import {logStore} from '../lib/helpers/logStore.ts';
 
 const SettingsScreen = () => {
   const theme = useTheme();
-  const {themeStore, languageStore} = useStore();
+  const {themeStore, languageStore, userStore} = useStore();
   const {t} = useTranslation();
 
   return (
@@ -32,6 +33,15 @@ const SettingsScreen = () => {
         onPress={() => toggleLanguage(languageStore)}
         style={styles.button}>
         {t('settings.switchLanguage')}
+      </Button>
+      <Button mode="contained-tonal" onPress={logStore} style={styles.button}>
+        Log store values
+      </Button>
+      <Button
+        mode="contained-tonal"
+        onPress={userStore.logout}
+        style={styles.button}>
+        {t('settings.logout')}
       </Button>
     </View>
   );

@@ -3,8 +3,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import TabNavigator from './TabNavigator';
 import {StoreContext} from '../../index.tsx';
 import AuthStack from './stacks/AuthStack.tsx';
+import {observer} from 'mobx-react-lite';
 
-export default function Routes() {
+function Routes() {
   const {userStore} = React.useContext(StoreContext);
   const isLoggedIn = Boolean(userStore.accessToken);
 
@@ -14,3 +15,5 @@ export default function Routes() {
     </NavigationContainer>
   );
 }
+
+export default observer(Routes);

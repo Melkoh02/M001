@@ -8,16 +8,32 @@ import * as Yup from 'yup';
 import FormikEmailInput from '../components/formik/FormikEmailInput.tsx';
 import FormikPasswordInput from '../components/formik/FormikPasswordInput.tsx';
 import {Button} from 'react-native-paper';
+import {useStore} from '../lib/hooks/useStore.ts';
+import {logStore} from '../lib/helpers/logStore.ts';
 
 export default function LoginScreen() {
   const theme = useTheme();
   const {t} = useTranslation();
   const api = useApi();
+  const rootStore = useStore();
   const [loading, setLoading] = React.useState(true);
 
+  const login = (data: {email: string; password: string}) => {
+    setLoading(true);
+    api.login(data).handle({
+      onSuccess: res => {
+        rootStore.userStore.setAuth(res);
+      },
+      onError: err => {
+        console.log('Server replied with an error:', err.response);
+      },
+      onFinally: () => setLoading(false),
+    });
+  };
+
   const initialValues = {
-    email: '',
-    password: '',
+    email: 'admin@admin.com',
+    password: 'admin',
   };
 
   const validationSchema = Yup.object({
@@ -28,7 +44,7 @@ export default function LoginScreen() {
   });
 
   const onLoginPress = () => {
-    console.log('Submitting...');
+    login(formik.values);
   };
 
   const formik = useFormik({
@@ -66,6 +82,9 @@ export default function LoginScreen() {
           {t('login.loginButton')}
         </Button>
       </FormikProvider>
+      <Button mode="contained-tonal" onPress={logStore} style={styles.button}>
+        Log store values
+      </Button>
     </View>
   );
 }
