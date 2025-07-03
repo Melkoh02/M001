@@ -16,7 +16,7 @@ export default function LoginScreen() {
   const {t} = useTranslation();
   const api = useApi();
   const rootStore = useStore();
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
 
   const login = (data: {email: string; password: string}) => {
     setLoading(true);
@@ -78,8 +78,9 @@ export default function LoginScreen() {
         <Button
           mode="contained-tonal"
           onPress={onLoginPress}
+          loading={loading}
           style={styles.button}>
-          {t('login.loginButton')}
+          {loading ? '' : t('login.loginButton')}{' '}
         </Button>
       </FormikProvider>
       <Button mode="contained-tonal" onPress={logStore} style={styles.button}>
