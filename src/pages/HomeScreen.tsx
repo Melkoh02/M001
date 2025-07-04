@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
 import MainSearchBar from '../components/molecules/searchBar.tsx';
+import MainFab from '../components/molecules/fab.tsx';
 
 export default function HomeScreen() {
   const theme = useTheme();
@@ -19,6 +20,7 @@ export default function HomeScreen() {
         <Text style={{color: theme.colors.primary, padding: 10}}>
           {t('home.title')}
         </Text>
+        <MainFab />
       </View>
     </>
   );
