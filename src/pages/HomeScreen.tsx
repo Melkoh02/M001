@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
-import MainSearchBar from '../components/searchBar.tsx';
+import MainSearchBar from '../components/molecules/searchBar.tsx';
 
 export default function HomeScreen() {
   const theme = useTheme();
