@@ -1,9 +1,12 @@
 import * as React from 'react';
+import {View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {Avatar, Searchbar} from 'react-native-paper';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
-import {View} from 'react-native';
+import {SearchBarNavProp} from '../../lib/types/navigation.ts';
 
 const MainSearchBar = () => {
+  const navigation = useNavigation<SearchBarNavProp>();
   const [searchQuery, setSearchQuery] = React.useState('');
   const theme = useTheme();
 
@@ -19,7 +22,7 @@ const MainSearchBar = () => {
         onChangeText={setSearchQuery}
         value={searchQuery}
         icon={'menu'}
-        onIconPress={() => console.log('Menu pressed')}
+        onIconPress={() => navigation.openDrawer()}
         right={props => (
           <Avatar.Image
             {...props}
