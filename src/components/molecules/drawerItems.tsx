@@ -1,14 +1,24 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Badge, Drawer, Switch, Text, TouchableRipple} from 'react-native-paper';
+import {
+  Badge,
+  Button,
+  Drawer,
+  Switch,
+  Text,
+  TouchableRipple,
+} from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {useStore} from '../../lib/hooks/useStore.ts';
+import {logStore} from '../../lib/helpers/logStore.ts';
 
 export default function DrawerItems() {
   const theme = useTheme();
   const [drawerItemIndex, setDrawerItemIndex] = React.useState<number>(0);
-  const {themeStore} = useStore();
+  const {themeStore, userStore} = useStore();
+  const {t} = useTranslation();
   const isDarkTheme = theme.scheme === 'dark';
 
   const _setDrawerItem = (index: number) => setDrawerItemIndex(index);
@@ -59,15 +69,31 @@ export default function DrawerItems() {
           />
         ))}
       </Drawer.Section>
-      <Drawer.Section title="Preferences">
+      <Drawer.Section title={t('drawer.preferences')}>
         <TouchableRipple onPress={themeStore.toggle}>
-          <View style={[styles.preference, styles.v3Preference]}>
-            <Text variant="labelLarge">Dark Theme</Text>
+          <View style={[styles.preference]}>
+            <Text variant="labelLarge">{t('drawer.darkTheme')}</Text>
             <View pointerEvents="none">
               <Switch value={isDarkTheme} />
             </View>
           </View>
         </TouchableRipple>
+      </Drawer.Section>
+      <Drawer.Section title={'Dev tools'} showDivider={true}>
+        <TouchableRipple onPress={logStore}>
+          <View style={{paddingHorizontal: 28}}>
+            <Text variant="labelLarge">Log store values</Text>
+            <View pointerEvents="none"></View>
+          </View>
+        </TouchableRipple>
+      </Drawer.Section>
+      <Drawer.Section showDivider={false}>
+        <Button
+          onPress={userStore.logout}
+          textColor={theme.colors.error}
+          style={styles.logout}>
+          {t('settings.logout')}
+        </Button>
       </Drawer.Section>
     </DrawerContentScrollView>
   );
@@ -82,20 +108,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
-  v3Preference: {
-    height: 56,
     paddingHorizontal: 28,
+    height: 56,
   },
   badge: {
     alignSelf: 'center',
   },
-  collapsedSection: {
-    marginTop: 16,
-  },
-  annotation: {
-    marginHorizontal: 24,
-    marginVertical: 6,
-  },
+  logout: {},
 });

@@ -19,6 +19,10 @@
     "language": "Language",
     "switchLanguage": "Switch Language",
     "toggleTheme": "Toggle Theme",
-    "logout": "Log out"
+    "logout": "Log Out"
+  },
+  "drawer": {
+    "preferences": "Preferences",
+    "darkTheme": "Dark Theme"
   }
 }

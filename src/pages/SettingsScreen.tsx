@@ -11,7 +11,7 @@ import {logStore} from '../lib/helpers/logStore.ts';
 
 const SettingsScreen = () => {
   const theme = useTheme();
-  const {themeStore, languageStore, userStore} = useStore();
+  const {languageStore} = useStore();
   const {t} = useTranslation();
 
   return (
@@ -20,14 +20,6 @@ const SettingsScreen = () => {
       <Text style={[styles.title, {color: theme.colors.primary}]}>
         {t('settings.title')}
       </Text>
-
-      <Button
-        mode="contained-tonal"
-        onPress={themeStore.toggle}
-        style={styles.button}>
-        {t('settings.toggleTheme')}
-      </Button>
-
       <Button
         mode="contained-tonal"
         onPress={() => toggleLanguage(languageStore)}
@@ -36,12 +28,6 @@ const SettingsScreen = () => {
       </Button>
       <Button mode="contained-tonal" onPress={logStore} style={styles.button}>
         Log store values
-      </Button>
-      <Button
-        mode="contained-tonal"
-        onPress={userStore.logout}
-        style={styles.button}>
-        {t('settings.logout')}
       </Button>
     </View>
   );

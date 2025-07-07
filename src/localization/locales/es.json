@@ -20,5 +20,9 @@
     "switchLanguage": "Cambiar Idioma",
     "toggleTheme": "Cambia Tema",
     "logout": "Cerrar Sesion"
+  },
+  "drawer": {
+    "preferences": "Preferencias",
+    "darkTheme": "Modo Oscuro"
   }
 }
