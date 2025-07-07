@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerItems from './drawerItems.tsx';
 import TabNavigator from '../../routes/TabNavigator.tsx';

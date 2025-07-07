@@ -55,54 +55,63 @@ export default function DrawerItems() {
   return (
     <DrawerContentScrollView
       alwaysBounceVertical={false}
-      style={{
-        ...styles.drawerContent,
+      contentContainerStyle={{
+        flex: 1,
         backgroundColor: theme.colors.surface,
+        paddingTop: 0,
+        paddingBottom: 0,
       }}>
-      <Drawer.Section title="Example items">
-        {DrawerItemsData.map((props, index) => (
-          <Drawer.Item
-            {...props}
-            key={props.key}
-            active={drawerItemIndex === index}
-            onPress={() => _setDrawerItem(index)}
-          />
-        ))}
-      </Drawer.Section>
-      <Drawer.Section title={t('drawer.preferences')}>
-        <TouchableRipple onPress={themeStore.toggle}>
-          <View style={[styles.preference]}>
-            <Text variant="labelLarge">{t('drawer.darkTheme')}</Text>
-            <View pointerEvents="none">
-              <Switch value={isDarkTheme} />
-            </View>
-          </View>
-        </TouchableRipple>
-      </Drawer.Section>
-      <Drawer.Section title={'Dev tools'} showDivider={true}>
-        <TouchableRipple onPress={logStore}>
-          <View style={{paddingHorizontal: 28}}>
-            <Text variant="labelLarge">Log store values</Text>
-            <View pointerEvents="none"></View>
-          </View>
-        </TouchableRipple>
-      </Drawer.Section>
-      <Drawer.Section showDivider={false}>
-        <Button
-          onPress={userStore.logout}
-          textColor={theme.colors.error}
-          style={styles.logout}>
-          {t('settings.logout')}
-        </Button>
-      </Drawer.Section>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'space-between',
+        }}>
+        <View>
+          <Drawer.Section title="Example items">
+            {DrawerItemsData.map((props, index) => (
+              <Drawer.Item
+                {...props}
+                key={props.key}
+                active={drawerItemIndex === index}
+                onPress={() => _setDrawerItem(index)}
+              />
+            ))}
+          </Drawer.Section>
+
+          <Drawer.Section title={t('drawer.preferences')}>
+            <TouchableRipple onPress={themeStore.toggle}>
+              <View style={styles.preference}>
+                <Text variant="labelLarge">{t('drawer.darkTheme')}</Text>
+                <View pointerEvents="none">
+                  <Switch value={isDarkTheme} />
+                </View>
+              </View>
+            </TouchableRipple>
+          </Drawer.Section>
+
+          <Drawer.Section title={'Dev tools'} showDivider={true}>
+            <TouchableRipple onPress={logStore}>
+              <View style={{paddingHorizontal: 28}}>
+                <Text variant="labelLarge">Log store values</Text>
+              </View>
+            </TouchableRipple>
+          </Drawer.Section>
+        </View>
+
+        <Drawer.Section showDivider={false}>
+          <Button
+            onPress={userStore.logout}
+            textColor={theme.colors.error}
+            style={styles.logout}>
+            {t('settings.logout')}
+          </Button>
+        </Drawer.Section>
+      </View>
     </DrawerContentScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  drawerContent: {
-    flex: 1,
-  },
   preference: {
     flexDirection: 'row',
     justifyContent: 'space-between',
