@@ -3,11 +3,13 @@ import {StyleSheet, View} from 'react-native';
 import {Badge, Drawer, Switch, Text, TouchableRipple} from 'react-native-paper';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
+import {useStore} from '../../lib/hooks/useStore.ts';
 
 export default function DrawerItems() {
   const theme = useTheme();
   const [drawerItemIndex, setDrawerItemIndex] = React.useState<number>(0);
-  const isDarkTheme = false;
+  const {themeStore} = useStore();
+  const isDarkTheme = theme.scheme === 'dark';
 
   const _setDrawerItem = (index: number) => setDrawerItemIndex(index);
 
@@ -52,14 +54,13 @@ export default function DrawerItems() {
           <Drawer.Item
             {...props}
             key={props.key}
-            // theme={props.key === 3 ? coloredLabelTheme : undefined}
             active={drawerItemIndex === index}
             onPress={() => _setDrawerItem(index)}
           />
         ))}
       </Drawer.Section>
       <Drawer.Section title="Preferences">
-        <TouchableRipple onPress={() => console.log('Pressed')}>
+        <TouchableRipple onPress={themeStore.toggle}>
           <View style={[styles.preference, styles.v3Preference]}>
             <Text variant="labelLarge">Dark Theme</Text>
             <View pointerEvents="none">
