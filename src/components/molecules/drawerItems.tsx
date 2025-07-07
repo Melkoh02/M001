@@ -135,5 +135,7 @@ const styles = StyleSheet.create({
   badge: {
     alignSelf: 'center',
   },
-  logout: {},
+  logout: {
+    paddingBottom: 16,
+  },
 });

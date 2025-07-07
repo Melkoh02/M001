@@ -11,7 +11,7 @@ type BaseLayoutProps = {
   children: React.ReactNode;
 };
 
-const insetsEdges: Edge[] = ['top', 'bottom'];
+const insetsEdges: Edge[] = ['top'];
 
 const BaseLayout = ({children}: BaseLayoutProps) => {
   const theme = useTheme();
