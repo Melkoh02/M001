@@ -14,5 +14,5 @@ export type BaseModalProps = {
   titleStyle?: object;
   content: React.ReactNode;
   contentStyle?: object;
-  actions: ModalAction[];
+  actions?: ModalAction[];
 };

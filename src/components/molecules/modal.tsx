@@ -33,11 +33,12 @@ export default function BaseModal({
             {content}
           </View>
           <View style={styles.actions}>
-            {actions.map(({text, onPress, mode = 'text', style}, index) => (
-              <Button key={index} mode={mode} onPress={onPress} style={style}>
-                {text}
-              </Button>
-            ))}
+            {actions &&
+              actions.map(({text, onPress, mode = 'text', style}, index) => (
+                <Button key={index} mode={mode} onPress={onPress} style={style}>
+                  {text}
+                </Button>
+              ))}
           </View>
         </Surface>
       </Modal>
