@@ -1,4 +1,3 @@
-import React from 'react';
 import {observer} from 'mobx-react-lite';
 
 import BaseLayout from '../components/templates/BaseLayout';

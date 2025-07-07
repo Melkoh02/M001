@@ -1,4 +1,3 @@
-import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import {observer} from 'mobx-react-lite';
@@ -7,7 +6,6 @@ import {useTheme} from '../lib/hooks/useAppTheme';
 import {useStore} from '../lib/hooks/useStore';
 import {useTranslation} from 'react-i18next';
 import {toggleLanguage} from '../lib/helpers/toggleLanguage.ts';
-import {logStore} from '../lib/helpers/logStore.ts';
 
 const SettingsScreen = () => {
   const theme = useTheme();
@@ -25,9 +23,6 @@ const SettingsScreen = () => {
         onPress={() => toggleLanguage(languageStore)}
         style={styles.button}>
         {t('settings.switchLanguage')}
-      </Button>
-      <Button mode="contained-tonal" onPress={logStore} style={styles.button}>
-        Log store values
       </Button>
     </View>
   );
