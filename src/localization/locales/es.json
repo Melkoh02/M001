@@ -1,5 +1,13 @@
 {
   "greeting": "¡Bienvenido, {{name}}!",
+  "common": {
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "yes": "Si",
+    "no": "No",
+    "continue": "Continuar",
+    "search": "Buscar"
+  },
   "tabNavigator": {
     "home": "Inicio",
     "settings": "Configuraciones"
@@ -23,6 +31,11 @@
   },
   "drawer": {
     "preferences": "Preferencias",
-    "darkTheme": "Modo Oscuro"
+    "darkTheme": "Modo Oscuro",
+    "language": "Language",
+    "selectLanguageModal": {
+      "title": "Seleccionar Idioma",
+      "Content": "Seleccionar Idioma"
+    }
   }
 }

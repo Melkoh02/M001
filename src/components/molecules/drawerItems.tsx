@@ -13,12 +13,16 @@ import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {useStore} from '../../lib/hooks/useStore.ts';
 import {logStore} from '../../lib/helpers/logStore.ts';
+import SelectLanguageModal from '../organisms/selectLanguageModal.tsx';
 
 export default function DrawerItems() {
-  const theme = useTheme();
-  const [drawerItemIndex, setDrawerItemIndex] = React.useState<number>(0);
-  const {themeStore, userStore} = useStore();
   const {t} = useTranslation();
+  const theme = useTheme();
+  const {themeStore, userStore} = useStore();
+  const [drawerItemIndex, setDrawerItemIndex] = React.useState<number>(0);
+  const [selectLanguageModalVisible, setSelectLanguageModalVisible] =
+    React.useState<boolean>(false);
+
   const isDarkTheme = theme.scheme === 'dark';
 
   const _setDrawerItem = (index: number) => setDrawerItemIndex(index);
@@ -77,8 +81,12 @@ export default function DrawerItems() {
               />
             ))}
           </Drawer.Section>
-
           <Drawer.Section title={t('drawer.preferences')}>
+            <Drawer.Item
+              icon={'earth'}
+              onPress={() => setSelectLanguageModalVisible(true)}
+              label={t('drawer.language')}
+            />
             <TouchableRipple onPress={themeStore.toggle}>
               <View style={styles.preference}>
                 <Text variant="labelLarge">{t('drawer.darkTheme')}</Text>
@@ -106,6 +114,10 @@ export default function DrawerItems() {
             {t('settings.logout')}
           </Button>
         </Drawer.Section>
+        <SelectLanguageModal
+          isVisible={selectLanguageModalVisible}
+          onDismiss={() => setSelectLanguageModalVisible(false)}
+        />
       </View>
     </DrawerContentScrollView>
   );

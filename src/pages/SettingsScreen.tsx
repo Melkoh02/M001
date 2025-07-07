@@ -1,15 +1,10 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {Button} from 'react-native-paper';
-import {observer} from 'mobx-react-lite';
-
-import {useTheme} from '../lib/hooks/useAppTheme';
-import {useStore} from '../lib/hooks/useStore';
 import {useTranslation} from 'react-i18next';
-import {toggleLanguage} from '../lib/helpers/toggleLanguage.ts';
+import {observer} from 'mobx-react-lite';
+import {useTheme} from '../lib/hooks/useAppTheme';
 
 const SettingsScreen = () => {
   const theme = useTheme();
-  const {languageStore} = useStore();
   const {t} = useTranslation();
 
   return (
@@ -18,12 +13,6 @@ const SettingsScreen = () => {
       <Text style={[styles.title, {color: theme.colors.primary}]}>
         {t('settings.title')}
       </Text>
-      <Button
-        mode="contained-tonal"
-        onPress={() => toggleLanguage(languageStore)}
-        style={styles.button}>
-        {t('settings.switchLanguage')}
-      </Button>
     </View>
   );
 };

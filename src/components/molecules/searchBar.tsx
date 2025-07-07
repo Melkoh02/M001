@@ -1,14 +1,17 @@
-import * as React from 'react';
+import {useState} from 'react';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 import {Avatar, Searchbar} from 'react-native-paper';
+
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {SearchBarNavProp} from '../../lib/types/navigation.ts';
 
 const MainSearchBar = () => {
-  const navigation = useNavigation<SearchBarNavProp>();
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const {t} = useTranslation();
   const theme = useTheme();
+  const navigation = useNavigation<SearchBarNavProp>();
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <View
@@ -18,7 +21,7 @@ const MainSearchBar = () => {
       }}>
       <Searchbar
         mode="bar"
-        placeholder="Search"
+        placeholder={t('common.search')}
         onChangeText={setSearchQuery}
         value={searchQuery}
         icon={'menu'}
