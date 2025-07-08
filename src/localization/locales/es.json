@@ -27,8 +27,10 @@
     "signUpButton": "Registrarse",
     "email": "Correo",
     "password": "Contraseña",
+    "passwordPlaceholder": "Password",
     "confirmPassword": "Confirmar Contraseña",
-    "backToLogin": "Ya tienes una cuenta? Ingresar"
+    "confirmPasswordPlaceholder": "Confirmar Contraseña",
+    "backToLogin": "Ya tienes una cuenta?"
   },
   "home": {
     "title": "Pantalla de Inicio"

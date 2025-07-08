@@ -17,3 +17,8 @@ export type SearchBarNavProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabParamList, 'HomeTab'>,
   DrawerNavigationProp<DrawerParamList>
 >;
+
+export type AuthStackParamList = {
+  Login: undefined;
+  SignUp: undefined;
+};

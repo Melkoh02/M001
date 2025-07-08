@@ -28,7 +28,8 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
-    "backToLogin": "Back to Login"
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "backToLogin": "Already have an account?"
   },
   "home": {
     "title": "Home Screen"
