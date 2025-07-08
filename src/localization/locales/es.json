@@ -14,10 +14,21 @@
   },
   "login": {
     "title": "Ingresar",
-    "loginButton": "Ingresar"
+    "loginButton": "Ingresar",
+    "email": "Correo",
+    "emailPlaceholder": "Correo",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Contraseña",
+    "forgotPassword": "Olvidaste tu contraseña?",
+    "noAccount": "No tienes una cuenta aun?"
   },
   "signUp": {
-    "title": "Registrarse"
+    "title": "Registrarse",
+    "signUpButton": "Registrarse",
+    "email": "Correo",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "backToLogin": "Ya tienes una cuenta? Ingresar"
   },
   "home": {
     "title": "Pantalla de Inicio"

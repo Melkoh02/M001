@@ -14,10 +14,21 @@
   },
   "login": {
     "title": "Login",
-    "loginButton": "Login"
+    "loginButton": "Log in",
+    "email": "Email",
+    "emailPlaceholder": "Email",
+    "password": "Password",
+    "passwordPlaceholder": "Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?"
   },
   "signUp": {
-    "title": "Sign Up"
+    "title": "Sign Up",
+    "signUpButton": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "backToLogin": "Back to Login"
   },
   "home": {
     "title": "Home Screen"

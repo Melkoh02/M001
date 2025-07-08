@@ -18,7 +18,10 @@ export function BaseFormikInput({
         value={field.value}
         onChangeText={field.onChange(field.name)}
         onBlur={field.onBlur(field.name)}
-        style={[{backgroundColor: theme.colors.surface}, style]}
+        style={[
+          {backgroundColor: theme.colors.surface, paddingHorizontal: 0},
+          style,
+        ]}
       />
     </>
   );

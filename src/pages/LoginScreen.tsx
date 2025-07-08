@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
 import useApi from '../lib/hooks/useApi.ts';
@@ -7,9 +7,8 @@ import {Field, FormikProvider, useFormik} from 'formik';
 import * as Yup from 'yup';
 import FormikEmailInput from '../components/formik/FormikEmailInput.tsx';
 import FormikPasswordInput from '../components/formik/FormikPasswordInput.tsx';
-import {Button} from 'react-native-paper';
+import {Button, Text} from 'react-native-paper';
 import {useStore} from '../lib/hooks/useStore.ts';
-import {logStore} from '../lib/helpers/logStore.ts';
 
 export default function LoginScreen() {
   const theme = useTheme();
@@ -59,33 +58,53 @@ export default function LoginScreen() {
         ...styles.container,
         backgroundColor: theme.colors.background,
       }}>
-      <Text style={{color: theme.colors.primary, padding: 10}}>
+      <Text variant="headlineLarge" style={styles.title}>
         {t('login.title')}
       </Text>
       <FormikProvider value={formik}>
-        <Field
-          component={FormikEmailInput}
-          name="email"
-          label="Email"
-          placeholder={'Email'}
-        />
-        <Field
-          component={FormikPasswordInput}
-          name="password"
-          label="Password"
-          placeholder={'Password'}
-        />
+        <View style={styles.fields}>
+          <Field
+            component={FormikEmailInput}
+            name="email"
+            label={t('login.email')}
+            placeholder={t('login.emailPlaceholder')}
+          />
+          <Field
+            component={FormikPasswordInput}
+            name="password"
+            label={t('login.password')}
+            placeholder={t('login.passwordPlaceholder')}
+          />
+          <Button
+            mode="contained"
+            onPress={onLoginPress}
+            loading={loading}
+            style={styles.button}>
+            {!loading && t('login.loginButton')}
+          </Button>
+        </View>
         <Button
-          mode="contained-tonal"
-          onPress={onLoginPress}
-          loading={loading}
-          style={styles.button}>
-          {loading ? '' : t('login.loginButton')}{' '}
+          mode="text"
+          style={{paddingTop: 12}}
+          onPress={() => {
+            /* TODO: navigate to ResetPassword */
+          }}>
+          {t('login.forgotPassword')}
         </Button>
+        <View style={styles.footer}>
+          <Text style={{color: theme.colors.onBackground}}>
+            {t('login.noAccount')}
+          </Text>
+          <Button
+            mode="text"
+            onPress={() => {
+              /* TODO: navigate to SignUp */
+            }}
+            style={{}}>
+            {t('signUp.title')}
+          </Button>
+        </View>
       </FormikProvider>
-      <Button mode="contained-tonal" onPress={logStore} style={styles.button}>
-        Log store values
-      </Button>
     </View>
   );
 }
@@ -93,8 +112,22 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     paddingHorizontal: 24,
+    paddingTop: '50%',
   },
-  button: {marginTop: 16},
+  title: {
+    fontWeight: '700',
+    marginBottom: 32,
+  },
+  fields: {
+    gap: 20,
+  },
+  button: {
+    marginTop: 24,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
