@@ -1,5 +1,7 @@
-import {action, computed, makeAutoObservable} from 'mobx';
+import {action, computed, makeAutoObservable, runInAction} from 'mobx';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {User} from '../types/user';
+import {USER_STORAGE_KEY} from '../constants';
 
 interface AuthResponse {
   access: string;
@@ -11,6 +13,7 @@ export class UserStore {
   user: User | null = null;
   accessToken: string | null = null;
   refreshToken: string | null = null;
+  isHydrated = false;
 
   constructor() {
     makeAutoObservable(this, {
@@ -18,6 +21,7 @@ export class UserStore {
       setAuth: action.bound,
       logout: action.bound,
     });
+    this.hydrate();
   }
 
   /**
@@ -36,6 +40,10 @@ export class UserStore {
     this.accessToken = access;
     this.refreshToken = refresh;
     this.user = user;
+    AsyncStorage.setItem(
+      USER_STORAGE_KEY,
+      JSON.stringify({access, refresh, user}),
+    ).catch(console.warn);
   }
 
   /**
@@ -45,5 +53,27 @@ export class UserStore {
     this.user = null;
     this.accessToken = null;
     this.refreshToken = null;
+    AsyncStorage.removeItem(USER_STORAGE_KEY).catch(console.warn);
+  }
+
+  /** Load saved auth from AsyncStorage */
+  private async hydrate() {
+    try {
+      const json = await AsyncStorage.getItem(USER_STORAGE_KEY);
+      if (json) {
+        const {access, refresh, user}: AuthResponse = JSON.parse(json);
+        runInAction(() => {
+          this.accessToken = access;
+          this.refreshToken = refresh;
+          this.user = user;
+        });
+      }
+    } catch (e) {
+      console.warn('UserStore hydration failed', e);
+    } finally {
+      runInAction(() => {
+        this.isHydrated = true;
+      });
+    }
   }
 }
