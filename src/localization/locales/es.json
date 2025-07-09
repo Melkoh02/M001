@@ -32,6 +32,12 @@
     "confirmPasswordPlaceholder": "Confirmar Contraseña",
     "backToLogin": "Ya tienes una cuenta?"
   },
+  "forgotPassword": {
+    "title": "Recuperar Contraseña",
+    "email": "Correo",
+    "submitButton": "Enviar link de recuperacion",
+    "backToLogin": "Voler a Ingresar"
+  },
   "home": {
     "title": "Pantalla de Inicio"
   },

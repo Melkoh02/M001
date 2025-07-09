@@ -6,24 +6,21 @@ import useApi from '../lib/hooks/useApi.ts';
 import {Field, FormikProvider, useFormik} from 'formik';
 import * as Yup from 'yup';
 import FormikEmailInput from '../components/formik/FormikEmailInput.tsx';
-import FormikPasswordInput from '../components/formik/FormikPasswordInput.tsx';
 import {Button, Text} from 'react-native-paper';
-import {useStore} from '../lib/hooks/useStore.ts';
 import {useNavigation} from '../lib/hooks/useNavigation.ts';
 
-export default function LoginScreen() {
+export default function ForgotPassword() {
   const theme = useTheme();
   const {t} = useTranslation();
   const api = useApi();
-  const rootStore = useStore();
   const navigation = useNavigation('AuthStack');
   const [loading, setLoading] = React.useState(false);
 
-  const login = (data: {email: string; password: string}) => {
+  const forgotPassword = (data: {email: string}) => {
     setLoading(true);
-    api.login(data).handle({
+    api.forgotPassword(data).handle({
       onSuccess: res => {
-        rootStore.userStore.setAuth(res);
+        console.log('Reset Link Sent', res);
       },
       onError: err => {
         console.log('Server replied with an error:', err.response);
@@ -33,25 +30,23 @@ export default function LoginScreen() {
   };
 
   const initialValues = {
-    email: 'admin@admin.com',
-    password: 'admin',
+    email: '',
   };
 
   const validationSchema = Yup.object({
     email: Yup.string()
       .email('Invalid email')
       .required('Email is a required field'),
-    password: Yup.string().required('Password is a required field'),
   });
 
-  const onLoginPress = () => {
-    login(formik.values);
+  const onSubmitPress = () => {
+    forgotPassword(formik.values);
   };
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: onLoginPress,
+    onSubmit: onSubmitPress,
   });
 
   return (
@@ -61,45 +56,27 @@ export default function LoginScreen() {
         backgroundColor: theme.colors.background,
       }}>
       <Text variant="headlineLarge" style={styles.title}>
-        {t('login.title')}
+        {t('forgotPassword.title')}
       </Text>
       <FormikProvider value={formik}>
         <View style={styles.fields}>
           <Field
             component={FormikEmailInput}
             name="email"
-            label={t('login.email')}
-            placeholder={t('login.emailPlaceholder')}
-          />
-          <Field
-            component={FormikPasswordInput}
-            name="password"
-            label={t('login.password')}
-            placeholder={t('login.passwordPlaceholder')}
+            label={t('forgotPassword.email')}
+            placeholder={t('forgotPassword.email')}
           />
           <Button
             mode="contained"
-            onPress={onLoginPress}
+            onPress={onSubmitPress}
             loading={loading}
             style={styles.button}>
-            {!loading && t('login.loginButton')}
+            {!loading && t('forgotPassword.submitButton')}
           </Button>
         </View>
-        <Button
-          mode="text"
-          style={{paddingTop: 12}}
-          onPress={() => navigation.navigate('ForgotPassword')}>
-          {t('login.forgotPassword')}
-        </Button>
         <View style={styles.footer}>
-          <Text style={{color: theme.colors.onBackground}}>
-            {t('login.noAccount')}
-          </Text>
-          <Button
-            mode="text"
-            onPress={() => navigation.navigate('SignUp')}
-            style={{}}>
-            {t('signUp.title')}
+          <Button mode="text" onPress={() => navigation.goBack()} style={{}}>
+            {t('forgotPassword.backToLogin')}
           </Button>
         </View>
       </FormikProvider>
@@ -121,7 +98,7 @@ const styles = StyleSheet.create({
     gap: 20,
   },
   button: {
-    marginTop: 24,
+    marginVertical: 24,
   },
   footer: {
     flexDirection: 'row',

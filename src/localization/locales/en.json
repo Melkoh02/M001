@@ -31,6 +31,12 @@
     "confirmPasswordPlaceholder": "Confirm Password",
     "backToLogin": "Already have an account?"
   },
+  "forgotPassword": {
+    "title": "Reset Password",
+    "email": "Email",
+    "submitButton": "Send reset link",
+    "backToLogin": "Back to Login"
+  },
   "home": {
     "title": "Home Screen"
   },
