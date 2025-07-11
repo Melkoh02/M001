@@ -10,8 +10,10 @@ export interface SelectInputProps {
   value: string;
   /** called with new id (or '' to clear) */
   onChange: (id: string) => void;
-  /** input placeholder when nothing’s selected */
+  /** floating label text (always visible once focused or when value exists) */
   label?: string;
+  /** placeholder text (only shows when there's no value and input isn’t focused) */
+  placeholder?: string;
   /** list of all options */
   options: SelectInputOptionsProp[];
   /**

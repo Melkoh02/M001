@@ -8,6 +8,7 @@ export default function SelectInput({
   value,
   onChange,
   label,
+  placeholder,
   options,
   onSearch,
   style,
@@ -40,7 +41,10 @@ export default function SelectInput({
       <Pressable onPress={showModal}>
         <TextInput
           {...rest}
+          // floating label
           label={label}
+          // simple placeholder
+          placeholder={placeholder}
           value={displayValue}
           editable={false}
           style={[
@@ -52,9 +56,9 @@ export default function SelectInput({
               icon={value ? 'close' : visible ? 'menu-up' : 'menu-down'}
               onPress={() => {
                 if (value) {
-                  onChange(''); // clear
+                  onChange('');
                 } else {
-                  visible ? hideModal() : showModal(); // toggle
+                  visible ? hideModal() : showModal();
                 }
               }}
             />

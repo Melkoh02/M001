@@ -7,7 +7,8 @@ export default function FormikSelectInput(props: FormikSelectInputProps) {
     field,
     form,
     options,
-    placeholderText,
+    label,
+    placeholder,
     defaultValue,
     onSearch,
     style,
@@ -28,7 +29,8 @@ export default function FormikSelectInput(props: FormikSelectInputProps) {
         form.setFieldValue(field.name, val);
         form.setFieldTouched(field.name, true);
       }}
-      placeholderText={placeholderText}
+      label={label}
+      placeholder={placeholder}
       options={options}
       onSearch={onSearch}
       style={style}
