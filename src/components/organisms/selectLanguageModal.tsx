@@ -41,7 +41,7 @@ export default function SelectLanguageModal({
         <SelectInput
           value={selectedLang}
           onChange={setSelectedLang}
-          placeholderText={t('drawer.selectLanguageModal.placeholder')}
+          placeholder={t('drawer.selectLanguageModal.placeholder')}
           options={languageOptions}
           style={styles.select}
         />

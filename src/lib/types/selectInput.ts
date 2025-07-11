@@ -11,7 +11,7 @@ export interface SelectInputProps {
   /** called with new id (or '' to clear) */
   onChange: (id: string) => void;
   /** input placeholder when nothing’s selected */
-  placeholderText?: string;
+  label?: string;
   /** list of all options */
   options: SelectInputOptionsProp[];
   /**

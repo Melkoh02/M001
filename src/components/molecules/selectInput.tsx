@@ -7,7 +7,7 @@ import {SelectInputProps} from '../../lib/types/selectInput.ts';
 export default function SelectInput({
   value,
   onChange,
-  placeholderText,
+  label,
   options,
   onSearch,
   style,
@@ -40,7 +40,7 @@ export default function SelectInput({
       <Pressable onPress={showModal}>
         <TextInput
           {...rest}
-          label={placeholderText}
+          label={label}
           value={displayValue}
           editable={false}
           style={[

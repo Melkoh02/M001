@@ -16,7 +16,7 @@ export type BaseFormikInputProps = {
 export interface FormikSelectInputProps
   extends FieldProps,
     Pick<BaseFormikInputProps, 'style'> {
-  placeholderText?: string;
+  label?: string;
   options: SelectInputOptionsProp[];
   defaultValue?: string;
   onSearch?: (query: string) => void;
