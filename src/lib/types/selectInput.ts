@@ -22,6 +22,8 @@ export interface SelectInputProps {
    * otherwise we filter `options` locally
    */
   onSearch?: (query: string) => void;
+  /** whether to show the search bar (defaults to true) */
+  showSearch?: boolean;
   /** style for the TextInput */
   style?: StyleProp<ViewStyle>;
 

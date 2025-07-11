@@ -11,6 +11,7 @@ export default function SelectInput({
   placeholder,
   options,
   onSearch,
+  showSearch = true,
   style,
   ...rest
 }: SelectInputProps) {
@@ -27,6 +28,7 @@ export default function SelectInput({
   };
 
   const filteredOptions = useMemo(() => {
+    if (!showSearch) return options;
     if (onSearch) return options;
     const q = searchQuery.trim().toLowerCase();
     if (!q) return options;
@@ -73,12 +75,14 @@ export default function SelectInput({
             styles.modal,
             {backgroundColor: theme.colors.surface},
           ]}>
-          <Searchbar
-            placeholder="Search…"
-            onChangeText={handleSearchChange}
-            value={searchQuery}
-            style={styles.search}
-          />
+          {showSearch && (
+            <Searchbar
+              placeholder="Search…"
+              onChangeText={handleSearchChange}
+              value={searchQuery}
+              style={styles.search}
+            />
+          )}
           <ScrollView>
             {filteredOptions.map(opt => (
               <List.Item
