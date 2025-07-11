@@ -34,20 +34,17 @@ export default function FormikSelectInput(props: FormikSelectInputProps) {
 
   const handleSearchChange = (text: string) => {
     setSearchQuery(text);
-    if (onSearch) {
-      onSearch(text);
-    }
+    onSearch?.(text);
   };
 
   // if onSearch is provided, parent drives `options`; otherwise filter locally
   const filteredOptions = useMemo(() => {
     if (onSearch) return options;
     const q = searchQuery.trim().toLowerCase();
-    if (q === '') return options;
+    if (!q) return options;
     return options.filter(o => o.value.toLowerCase().includes(q));
   }, [options, searchQuery, onSearch]);
 
-  // find the label to display from the selected id
   const selected = options.find(o => o.id === field.value);
   const displayValue = selected ? selected.value : '';
 
@@ -63,6 +60,19 @@ export default function FormikSelectInput(props: FormikSelectInputProps) {
             {backgroundColor: theme.colors.surface, paddingHorizontal: 0},
             style,
           ]}
+          right={
+            <TextInput.Icon
+              icon={selected ? 'close' : visible ? 'menu-up' : 'menu-down'}
+              onPress={() => {
+                if (selected) {
+                  form.setFieldValue(field.name, '');
+                  form.setFieldTouched(field.name, true);
+                } else {
+                  visible ? hideModal() : showModal();
+                }
+              }}
+            />
+          }
         />
       </Pressable>
 
