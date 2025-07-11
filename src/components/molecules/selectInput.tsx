@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   modal: {
     margin: 20,
     padding: 10,
-    borderRadius: 8,
+    borderRadius: 16,
   } as ViewStyle,
   search: {
     marginBottom: 10,
