@@ -68,5 +68,6 @@ export default function SelectLanguageModal({
 const styles = StyleSheet.create({
   select: {
     marginTop: 16,
+    backgroundColor: 'transparent',
   },
 });
