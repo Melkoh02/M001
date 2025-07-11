@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {useStore} from '../../lib/hooks/useStore';
@@ -27,6 +27,12 @@ export default function SelectLanguageModal({
       })),
     [t],
   );
+
+  useEffect(() => {
+    if (isVisible) {
+      setSelectedLang(languageStore.language);
+    }
+  }, [isVisible, languageStore.language]);
 
   return (
     <BaseModal
