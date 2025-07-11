@@ -1,6 +1,7 @@
 import React from 'react';
-import {TextInput, useTheme} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 import {BaseFormikInputProps} from '../../lib/types/formik.ts';
+import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 
 export function BaseFormikInput({
   field,
