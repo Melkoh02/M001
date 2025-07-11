@@ -5,17 +5,13 @@ import type {
   FormikProps,
 } from 'formik';
 import type {TextInputProps} from 'react-native-paper';
+import {SelectInputOptionsProp} from './selectInput.ts';
 
 export type BaseFormikInputProps = {
   field: FieldInputProps<string>;
   meta: FieldMetaProps<string>;
   form: FormikProps<any>;
 } & Omit<TextInputProps, 'value' | 'onChangeText'> & {label: string};
-
-interface SelectInputOptionsProp {
-  id: string;
-  value: string;
-}
 
 export interface FormikSelectInputProps
   extends FieldProps,
