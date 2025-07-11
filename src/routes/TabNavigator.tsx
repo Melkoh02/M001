@@ -16,7 +16,7 @@ export default function TabNavigator() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        animation: 'shift',
+        animation: 'none',
       }}
       tabBar={({navigation, state, descriptors, insets}) => (
         <BottomNavigation.Bar
