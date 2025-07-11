@@ -54,7 +54,11 @@
     "language": "Language",
     "selectLanguageModal": {
       "title": "Seleccionar Idioma",
-      "Content": "Seleccionar Idioma"
+      "placeholder": "Seleccionar Idioma",
+      "languages": {
+        "en": "Inglés",
+        "es": "Español"
+      }
     }
   }
 }

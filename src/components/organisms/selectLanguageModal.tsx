@@ -1,10 +1,12 @@
-import BaseModal from '../molecules/modal.tsx';
-import {Button} from 'react-native-paper';
-import {toggleLanguage} from '../../lib/helpers/toggleLanguage.ts';
+import React, {useMemo, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {useStore} from '../../lib/hooks/useStore.ts';
-import {LanguageModalProps} from '../../lib/types/selectLanguageModal.ts';
+import {useStore} from '../../lib/hooks/useStore';
+import BaseModal from '../molecules/modal';
+import SelectInput from '../molecules/selectInput';
+import {LanguageModalProps} from '../../lib/types/selectLanguageModal';
+import {SUPPORTED_LANGUAGES} from '../../lib/constants/languages';
+import {SelectInputOptionsProp} from '../../lib/types/selectInput.ts';
 
 export default function SelectLanguageModal({
   isVisible,
@@ -13,16 +15,30 @@ export default function SelectLanguageModal({
   const {t} = useTranslation();
   const {languageStore} = useStore();
 
+  // Local state to stage the choice before confirm:
+  const [selectedLang, setSelectedLang] = useState(languageStore.language);
+
+  // Map the constant list into `Option[]` for SelectInput:
+  const languageOptions: SelectInputOptionsProp[] = useMemo(
+    () =>
+      SUPPORTED_LANGUAGES.map(lang => ({
+        id: lang.id,
+        value: t(lang.labelKey),
+      })),
+    [t],
+  );
+
   return (
     <BaseModal
       title={t('drawer.selectLanguageModal.title')}
       content={
-        <Button
-          mode="contained-tonal"
-          onPress={() => toggleLanguage(languageStore)}
-          style={styles.button}>
-          {t('settings.switchLanguage')}
-        </Button>
+        <SelectInput
+          value={selectedLang}
+          onChange={setSelectedLang}
+          placeholderText={t('drawer.selectLanguageModal.placeholder')}
+          options={languageOptions}
+          style={styles.select}
+        />
       }
       isVisible={isVisible}
       onDismiss={onDismiss}
@@ -33,7 +49,10 @@ export default function SelectLanguageModal({
         },
         {
           text: t('common.confirm'),
-          onPress: onDismiss,
+          onPress: async () => {
+            await languageStore.setLanguage(selectedLang);
+            onDismiss();
+          },
         },
       ]}
     />
@@ -41,5 +60,7 @@ export default function SelectLanguageModal({
 }
 
 const styles = StyleSheet.create({
-  button: {marginTop: 16},
+  select: {
+    marginTop: 16,
+  },
 });

@@ -49,6 +49,22 @@ export default function ForgotPassword() {
     onSubmit: onSubmitPress,
   });
 
+  // dummy data for the example implementation of FormikSelectInput
+  // const dummyOptions = [
+  //   {
+  //     id: 1,
+  //     value: 'Option 1',
+  //   },
+  //   {
+  //     id: 2,
+  //     value: 'Option 2',
+  //   },
+  //   {
+  //     id: 3,
+  //     value: 'Option 3',
+  //   },
+  // ];
+
   return (
     <View
       style={{
@@ -66,6 +82,13 @@ export default function ForgotPassword() {
             label={t('forgotPassword.email')}
             placeholder={t('forgotPassword.email')}
           />
+          {/* Example Implementation of FormikSelectInput*/}
+          {/*<Field*/}
+          {/*  component={FormikSelectInput}*/}
+          {/*  name="selectTest"*/}
+          {/*  placeholder={'Pick one option'}*/}
+          {/*  options={dummyOptions}*/}
+          {/*/>*/}
           <Button
             mode="contained"
             onPress={onSubmitPress}
