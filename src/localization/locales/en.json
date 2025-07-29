@@ -1,4 +1,5 @@
 {
+  "appName": "M001",
   "greeting": "Welcome, {{name}}!",
   "common": {
     "cancel": "Cancel",
@@ -50,7 +51,12 @@
   "drawer": {
     "preferences": "Preferences",
     "darkTheme": "Dark Theme",
-    "language": "Language",
+    "language": "Language"
+  },
+  "modals": {
+    "userAccount": {
+      "title": "M001"
+    },
     "selectLanguageModal": {
       "title": "Select Language",
       "placeholder": "Select Language",

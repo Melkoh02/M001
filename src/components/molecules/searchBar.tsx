@@ -6,12 +6,14 @@ import {Avatar, Searchbar} from 'react-native-paper';
 
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {SearchBarNavProp} from '../../lib/types/navigation.ts';
+import UserAccountModal from '../organisms/userAccountModal.tsx';
 
 const MainSearchBar = () => {
   const {t} = useTranslation();
   const theme = useTheme();
   const navigation = useNavigation<SearchBarNavProp>();
   const [searchQuery, setSearchQuery] = useState('');
+  const [userAccountModalOpen, setUserAccountModalOpen] = useState(false);
 
   return (
     <View
@@ -31,9 +33,15 @@ const MainSearchBar = () => {
             {...props}
             size={30}
             source={require('../../assets/images/defaultAvatar.png')}
-            onTouchEnd={() => console.log('Avatar pressed')}
+            onTouchEnd={() => setUserAccountModalOpen(true)}
           />
         )}
+      />
+      <UserAccountModal
+        onDismiss={() => {
+          setUserAccountModalOpen(false);
+        }}
+        isVisible={userAccountModalOpen}
       />
     </View>
   );

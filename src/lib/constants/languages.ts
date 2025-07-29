@@ -4,7 +4,7 @@ export interface LanguageOption {
 }
 
 export const SUPPORTED_LANGUAGES: LanguageOption[] = [
-  {id: 'en', labelKey: 'drawer.selectLanguageModal.languages.en'},
-  {id: 'es', labelKey: 'drawer.selectLanguageModal.languages.es'},
-  // later: { id: 'fr', labelKey: 'drawer.selectLanguageModal.languages.fr' }, …
+  {id: 'en', labelKey: 'modals.selectLanguageModal.languages.en'},
+  {id: 'es', labelKey: 'modals.selectLanguageModal.languages.es'},
+  // later: { id: 'fr', labelKey: 'modals.selectLanguageModal.languages.fr' }, …
 ];
