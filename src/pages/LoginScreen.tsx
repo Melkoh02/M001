@@ -81,6 +81,7 @@ export default function LoginScreen() {
             mode="contained"
             onPress={onLoginPress}
             loading={loading}
+            disabled={loading}
             style={styles.button}>
             {!loading && t('login.loginButton')}
           </Button>

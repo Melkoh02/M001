@@ -92,6 +92,7 @@ export default function SignUpScreen() {
             mode="contained"
             onPress={onSignUpPress}
             loading={loading}
+            disabled={loading}
             style={styles.button}>
             {!loading && t('signUp.signUpButton')}
           </Button>
