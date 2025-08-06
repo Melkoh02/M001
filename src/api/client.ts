@@ -35,17 +35,24 @@ class RequestWrapper<T> {
   handle(opts: HandleOptions<T> = {}) {
     this.promise
       .then(res => {
-        if (opts.successMessage) console.log(opts.successMessage);
+        if (opts.successMessage) {
+          rootStore.uiStore.showSnackbar(opts.successMessage, 'success');
+        }
         opts.onSuccess?.(res.data);
       })
       .catch((err: AxiosError) => {
         // HTTP error (server responded with 4xx/5xx)
         if (err.response) {
-          if (opts.errorMessage) console.log(opts.errorMessage);
+          if (opts.errorMessage) {
+            rootStore.uiStore.showSnackbar(opts.errorMessage, 'danger');
+          }
           opts.onError?.(err);
         } else {
           // Network / no-response error
-          console.log('Network error:', err);
+          rootStore.uiStore.showSnackbar(
+            'Network error. Please check your connection or contact support.',
+            'danger',
+          );
         }
       })
       .finally(() => {
