@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosHeaders, AxiosResponse} from 'axios';
 import Config from 'react-native-config';
 import rootStore from '../lib/stores/rootStore.ts';
+import i18n from 'i18next';
 
 // --------------- Axios instance ---------------
 const client = axios.create({
@@ -50,7 +51,7 @@ class RequestWrapper<T> {
         } else {
           // Network / no-response error
           rootStore.uiStore.showSnackbar(
-            'Network error. Please check your connection or contact support.',
+            i18n.t('snackBarMessages.networkError'),
             'danger',
           );
         }

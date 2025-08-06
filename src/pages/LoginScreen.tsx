@@ -28,8 +28,8 @@ export default function LoginScreen() {
       onError: err => {
         console.log('Server replied with an error:', err.response);
       },
-      successMessage: 'Logged in!',
-      errorMessage: 'Could not log in, try again later!',
+      successMessage: t('snackBarMessages.loginSuccess'),
+      errorMessage: t('snackBarMessages.loginError'),
       onFinally: () => setLoading(false),
     });
   };
