@@ -4,7 +4,8 @@ export type SnackbarProps = {
   onDismiss: () => void;
   style?: object;
   duration?: number | undefined;
-  showCloseIcon?: string;
+  showCloseIcon?: boolean;
+  variant?: 'info' | 'success' | 'warning' | 'danger';
   action?: {
     label: string;
     onPress: () => void;
