@@ -2,12 +2,7 @@ import {action, computed, makeAutoObservable, runInAction} from 'mobx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {User} from '../types/user';
 import {USER_STORAGE_KEY} from '../constants';
-
-interface AuthResponse {
-  access: string;
-  refresh: string;
-  user: User;
-}
+import {AuthResponse} from '../types/api.ts';
 
 export class UserStore {
   user: User | null = null;

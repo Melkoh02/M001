@@ -1,7 +1,8 @@
-import axios, {AxiosError, AxiosHeaders, AxiosResponse} from 'axios';
+import axios, {AxiosHeaders} from 'axios';
 import Config from 'react-native-config';
 import rootStore from '../lib/stores/rootStore.ts';
 import i18n from 'i18next';
+import {ApiAxiosError, ApiAxiosResponse} from '../lib/types/api.ts';
 
 // --------------- Axios instance ---------------
 const client = axios.create({
@@ -24,14 +25,15 @@ client.interceptors.request.use(
 // --------------- RequestWrapper & helper ---------------
 export type HandleOptions<T> = {
   onSuccess?: (data: T) => void;
-  onError?: (error: AxiosError) => void;
+  onError?: (error: ApiAxiosError) => void;
   successMessage?: string;
   errorMessage?: string;
   onFinally?: () => void;
+  showBackendMessage?: boolean;
 };
 
 class RequestWrapper<T> {
-  constructor(private promise: Promise<AxiosResponse<T>>) {}
+  constructor(private promise: Promise<ApiAxiosResponse<T>>) {}
 
   handle(opts: HandleOptions<T> = {}) {
     this.promise
@@ -39,15 +41,20 @@ class RequestWrapper<T> {
         if (opts.successMessage) {
           rootStore.uiStore.showSnackbar(opts.successMessage, 'success');
         }
-        opts.onSuccess?.(res.data);
+        opts.onSuccess?.(res.data.data);
       })
-      .catch((err: AxiosError) => {
+      .catch((err: ApiAxiosError) => {
         // HTTP error (server responded with 4xx/5xx)
-        if (err.response) {
+        if (!!err.response) {
           if (opts.errorMessage) {
             rootStore.uiStore.showSnackbar(opts.errorMessage, 'danger');
+          } else if (err && err.response?.data?.localKey) {
+            rootStore.uiStore.showSnackbar(
+              i18n.t(err.response?.data?.localKey),
+              'danger',
+            );
+            opts.onError?.(err);
           }
-          opts.onError?.(err);
         } else {
           // Network / no-response error
           rootStore.uiStore.showSnackbar(
@@ -65,7 +72,7 @@ class RequestWrapper<T> {
 /**
  * Wrap any Axios call so it gains a .handle() method.
  */
-export function wrapRequest<T>(p: Promise<AxiosResponse<T>>) {
+export function wrapRequest<T>(p: Promise<ApiAxiosResponse<T>>) {
   return new RequestWrapper<T>(p);
 }
 

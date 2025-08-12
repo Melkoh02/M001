@@ -70,5 +70,9 @@
   "networkError": "Network error. Please check your connection or contact support",
   "loginError": "Could not log in, try again later",
   "loginSuccess": "Logged in! :D"
+ },
+ "backendRes": {
+  "successLogin": "Logged in! :D",
+  "badReqLogin": "Incorrect Email or Password, please try again"
  }
 }

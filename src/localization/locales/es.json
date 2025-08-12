@@ -71,5 +71,9 @@
   "networkError": "Error de red. Por favor, comprueba tu conexión o contacta con soporte",
   "loginError": "No se pudo iniciar sesión, inténtalo de nuevo más tarde",
   "loginSuccess": "¡Sesión iniciada! :D"
+ },
+ "backendRes": {
+  "successLogin": "Sesion iniciada! :D",
+  "badReqLogin": "Email o Contraseña incorrecta, vuelva a intentar"
  }
 }
