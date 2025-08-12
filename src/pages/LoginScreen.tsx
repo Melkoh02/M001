@@ -23,13 +23,11 @@ export default function LoginScreen() {
     setLoading(true);
     api.login(data).handle({
       onSuccess: res => {
+        console.log('res ===>', res);
         rootStore.userStore.setAuth(res);
       },
-      onError: err => {
-        console.log('Server replied with an error:', err.response);
-      },
       successMessage: t('snackBarMessages.loginSuccess'),
-      errorMessage: t('snackBarMessages.loginError'),
+      // errorMessage: t('snackBarMessages.loginError'),
       onFinally: () => setLoading(false),
     });
   };

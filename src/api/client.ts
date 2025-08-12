@@ -1,8 +1,7 @@
-import axios, {AxiosHeaders} from 'axios';
+import axios, {AxiosError, AxiosHeaders, AxiosResponse} from 'axios';
 import Config from 'react-native-config';
 import rootStore from '../lib/stores/rootStore.ts';
 import i18n from 'i18next';
-import {ApiAxiosError, ApiAxiosResponse} from '../lib/types/api.ts';
 
 // --------------- Axios instance ---------------
 const client = axios.create({
@@ -25,7 +24,7 @@ client.interceptors.request.use(
 // --------------- RequestWrapper & helper ---------------
 export type HandleOptions<T> = {
   onSuccess?: (data: T) => void;
-  onError?: (error: ApiAxiosError) => void;
+  onError?: (error: AxiosError) => void;
   successMessage?: string;
   errorMessage?: string;
   onFinally?: () => void;
@@ -33,7 +32,7 @@ export type HandleOptions<T> = {
 };
 
 class RequestWrapper<T> {
-  constructor(private promise: Promise<ApiAxiosResponse<T>>) {}
+  constructor(private promise: Promise<AxiosResponse<T>>) {}
 
   handle(opts: HandleOptions<T> = {}) {
     this.promise
@@ -41,9 +40,9 @@ class RequestWrapper<T> {
         if (opts.successMessage) {
           rootStore.uiStore.showSnackbar(opts.successMessage, 'success');
         }
-        opts.onSuccess?.(res.data.data);
+        opts.onSuccess?.(res.data);
       })
-      .catch((err: ApiAxiosError) => {
+      .catch((err: AxiosError) => {
         // HTTP error (server responded with 4xx/5xx)
         if (!!err.response) {
           if (opts.errorMessage) {
@@ -72,7 +71,7 @@ class RequestWrapper<T> {
 /**
  * Wrap any Axios call so it gains a .handle() method.
  */
-export function wrapRequest<T>(p: Promise<ApiAxiosResponse<T>>) {
+export function wrapRequest<T>(p: Promise<AxiosResponse<T>>) {
   return new RequestWrapper<T>(p);
 }
 
