@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Keyboard, StyleSheet, View} from 'react-native';
 import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
 import useApi from '../lib/hooks/useApi.ts';
@@ -46,6 +46,7 @@ export default function LoginScreen() {
 
   const onLoginPress = () => {
     login(formik.values);
+    Keyboard.dismiss();
   };
 
   const formik = useFormik({
