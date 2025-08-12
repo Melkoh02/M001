@@ -31,6 +31,10 @@ export type HandleOptions<T> = {
   showBackendMessage?: boolean;
 };
 
+export type ApiErrorData = {
+  localKey?: string;
+};
+
 class RequestWrapper<T> {
   constructor(private promise: Promise<AxiosResponse<T>>) {}
 
@@ -42,7 +46,7 @@ class RequestWrapper<T> {
         }
         opts.onSuccess?.(res.data);
       })
-      .catch((err: AxiosError) => {
+      .catch((err: AxiosError<ApiErrorData>) => {
         // HTTP error (server responded with 4xx/5xx)
         if (!!err.response) {
           if (opts.errorMessage) {

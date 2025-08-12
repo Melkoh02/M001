@@ -27,7 +27,7 @@ export default function LoginScreen() {
         rootStore.userStore.setAuth(res);
       },
       successMessage: t('snackBarMessages.loginSuccess'),
-      // errorMessage: t('snackBarMessages.loginError'),
+      errorMessage: t('snackBarMessages.loginError'),
       onFinally: () => setLoading(false),
     });
   };
