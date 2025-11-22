@@ -60,10 +60,8 @@ export default function DrawerItems() {
     <DrawerContentScrollView
       alwaysBounceVertical={false}
       contentContainerStyle={{
-        flex: 1,
+        ...styles.contentContainer,
         backgroundColor: theme.colors.surface,
-        paddingTop: 0,
-        paddingBottom: 0,
       }}>
       <View
         style={{
@@ -131,6 +129,11 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 28,
     height: 56,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   badge: {
     alignSelf: 'center',
