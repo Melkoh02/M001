@@ -1,78 +1,117 @@
 {
- "appName": "M001",
- "greeting": "Welcome, {{name}}!",
- "common": {
-  "cancel": "Cancel",
-  "confirm": "Confirm",
-  "yes": "Yes",
-  "no": "No",
-  "continue": "Continue",
-  "search": "Search"
- },
- "tabNavigator": {
-  "home": "Home",
-  "settings": "Settings"
- },
- "login": {
-  "title": "Login",
-  "loginButton": "Log in",
-  "email": "Email",
-  "emailPlaceholder": "Email",
-  "password": "Password",
-  "passwordPlaceholder": "Password",
-  "forgotPassword": "Forgot password?",
-  "noAccount": "Don't have an account?"
- },
- "signUp": {
-  "title": "Sign Up",
-  "signUpButton": "Sign Up",
-  "email": "Email",
-  "password": "Password",
-  "confirmPassword": "Confirm Password",
-  "confirmPasswordPlaceholder": "Confirm Password",
-  "backToLogin": "Already have an account?"
- },
- "forgotPassword": {
-  "title": "Reset Password",
-  "email": "Email",
-  "submitButton": "Send reset link",
-  "backToLogin": "Back to Login"
- },
- "home": {
-  "title": "Home Screen"
- },
- "settings": {
-  "title": "Settings Screen",
-  "language": "Language",
-  "switchLanguage": "Switch Language",
-  "toggleTheme": "Toggle Theme",
-  "logout": "Log Out"
- },
- "drawer": {
-  "preferences": "Preferences",
-  "darkTheme": "Dark Theme",
-  "language": "Language"
- },
- "modals": {
-  "userAccount": {
-   "title": "M001"
+  "appName": "M001",
+  "greeting": "Welcome, {{name}}!",
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "by": "by",
+    "continue": "Continue",
+    "search": "Search",
+    "loading": "Loading",
+    "relative": {
+      "just_now": "just now",
+      "past": {
+        "second_one": "{{count}} second ago",
+        "second_other": "{{count}} seconds ago",
+        "minute_one": "{{count}} minute ago",
+        "minute_other": "{{count}} minutes ago",
+        "hour_one": "{{count}} hour ago",
+        "hour_other": "{{count}} hours ago",
+        "day_one": "{{count}} day ago",
+        "day_other": "{{count}} days ago",
+        "week_one": "{{count}} week ago",
+        "week_other": "{{count}} weeks ago",
+        "month_one": "{{count}} month ago",
+        "month_other": "{{count}} months ago",
+        "year_one": "{{count}} year ago",
+        "year_other": "{{count}} years ago"
+      },
+      "future": {
+        "second_one": "in {{count}} second",
+        "second_other": "in {{count}} seconds",
+        "minute_one": "in {{count}} minute",
+        "minute_other": "in {{count}} minutes",
+        "hour_one": "in {{count}} hour",
+        "hour_other": "in {{count}} hours",
+        "day_one": "in {{count}} day",
+        "day_other": "in {{count}} days",
+        "week_one": "in {{count}} week",
+        "week_other": "in {{count}} weeks",
+        "month_one": "in {{count}} month",
+        "month_other": "in {{count}} months",
+        "year_one": "in {{count}} year",
+        "year_other": "in {{count}} years"
+      }
+    }
   },
-  "selectLanguageModal": {
-   "title": "Select Language",
-   "placeholder": "Select Language",
-   "languages": {
-    "en": "English",
-    "es": "Spanish"
-   }
+  "tabNavigator": {
+    "home": "Home",
+    "settings": "Settings"
+  },
+  "login": {
+    "title": "Login",
+    "loginButton": "Log in",
+    "email": "Email",
+    "emailPlaceholder": "Email",
+    "password": "Password",
+    "passwordPlaceholder": "Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "continueAsGuest": "Continue as Guest"
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "signUpButton": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "passwordPlaceholder": "Password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "backToLogin": "Already have an account?"
+  },
+  "forgotPassword": {
+    "title": "Reset Password",
+    "email": "Email",
+    "submitButton": "Send reset link",
+    "backToLogin": "Back to Login"
+  },
+  "home": {
+    "title": "Home Screen"
+  },
+  "settings": {
+    "title": "Settings Screen",
+    "language": "Language",
+    "switchLanguage": "Switch Language",
+    "toggleTheme": "Toggle Theme",
+    "logout": "Log Out"
+  },
+  "drawer": {
+    "preferences": "Preferences",
+    "darkTheme": "Dark Theme",
+    "language": "Language"
+  },
+  "modals": {
+    "userAccount": {
+      "title": "M001"
+    },
+    "selectLanguageModal": {
+      "title": "Select Language",
+      "placeholder": "Select Language",
+      "languages": {
+        "en": "English",
+        "es": "Spanish"
+      }
+    }
+  },
+  "snackBarMessages": {
+    "networkError": "Network error. Please check your connection or contact support",
+    "loginError": "Could not log in, try again later",
+    "loginSuccess": "Logged in! :D"
+  },
+  "backendRes": {
+    "successLogin": "Logged in! :D",
+    "badReqLogin": "Incorrect Email or Password, please try again"
   }
- },
- "snackBarMessages": {
-  "networkError": "Network error. Please check your connection or contact support",
-  "loginError": "Could not log in, try again later",
-  "loginSuccess": "Logged in! :D"
- },
- "backendRes": {
-  "successLogin": "Logged in! :D",
-  "badReqLogin": "Incorrect Email or Password, please try again"
- }
 }
