@@ -1,5 +1,11 @@
 import React from 'react';
-import {StatusBar, View} from 'react-native';
+import {
+  Keyboard,
+  StatusBar,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+} from 'react-native';
 import {
   Edge,
   SafeAreaProvider,
@@ -8,13 +14,24 @@ import {
 import {useTheme} from '../../lib/hooks/useAppTheme';
 
 type BaseLayoutProps = {
+  extraStyles?: ViewStyle;
   children: React.ReactNode;
+  disableKeyboardDismiss?: boolean;
 };
 
 const insetsEdges: Edge[] = ['top'];
 
-const BaseLayout = ({children}: BaseLayoutProps) => {
+const BaseLayout = ({
+  disableKeyboardDismiss,
+  extraStyles,
+  children,
+}: BaseLayoutProps) => {
   const theme = useTheme();
+
+  const handleBackgroundPress = () => {
+    if (disableKeyboardDismiss) return;
+    Keyboard.dismiss();
+  };
 
   return (
     <SafeAreaProvider>
@@ -22,12 +39,17 @@ const BaseLayout = ({children}: BaseLayoutProps) => {
         edges={insetsEdges}
         style={{
           flex: 1,
+          paddingHorizontal: 16,
           backgroundColor: theme.colors.background,
         }}>
         <StatusBar
           barStyle={theme.scheme === 'dark' ? 'light-content' : 'dark-content'}
         />
-        <View style={{flex: 1}}>{children}</View>
+        <TouchableWithoutFeedback
+          onPress={handleBackgroundPress}
+          accessible={false}>
+          <View style={[{flex: 1}, extraStyles]}>{children}</View>
+        </TouchableWithoutFeedback>
       </SafeAreaView>
     </SafeAreaProvider>
   );

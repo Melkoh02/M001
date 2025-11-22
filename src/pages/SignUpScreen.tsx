@@ -10,6 +10,7 @@ import FormikPasswordInput from '../components/formik/FormikPasswordInput.tsx';
 import {Button, Text} from 'react-native-paper';
 import {useStore} from '../lib/hooks/useStore.ts';
 import {useNavigation} from '@react-navigation/native';
+import BaseLayout from '../components/templates/BaseLayout.tsx';
 
 export default function SignUpScreen() {
   const theme = useTheme();
@@ -34,9 +35,9 @@ export default function SignUpScreen() {
   };
 
   const initialValues = {
-    email: 'test0@melkoh.dev',
-    password: 'Password123@',
-    confirmPassword: 'Password123@',
+    email: '',
+    password: '',
+    confirmPassword: '',
   };
 
   const validationSchema = Yup.object({
@@ -61,11 +62,7 @@ export default function SignUpScreen() {
   });
 
   return (
-    <View
-      style={{
-        ...styles.container,
-        backgroundColor: theme.colors.background,
-      }}>
+    <BaseLayout extraStyles={{justifyContent: 'center'}}>
       <Text variant="headlineLarge" style={styles.title}>
         {t('signUp.title')}
       </Text>
@@ -107,16 +104,11 @@ export default function SignUpScreen() {
           </Button>
         </View>
       </FormikProvider>
-    </View>
+    </BaseLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: '50%',
-  },
   title: {
     fontWeight: '700',
     marginBottom: 32,

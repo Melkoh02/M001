@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useTheme} from '../lib/hooks/useAppTheme.ts';
 import {useTranslation} from 'react-i18next';
 import useApi from '../lib/hooks/useApi.ts';
 import {Field, FormikProvider, useFormik} from 'formik';
@@ -8,9 +7,9 @@ import * as Yup from 'yup';
 import FormikEmailInput from '../components/formik/FormikEmailInput.tsx';
 import {Button, Text} from 'react-native-paper';
 import {useNavigation} from '../lib/hooks/useNavigation.ts';
+import BaseLayout from '../components/templates/BaseLayout.tsx';
 
 export default function ForgotPassword() {
-  const theme = useTheme();
   const {t} = useTranslation();
   const api = useApi();
   const navigation = useNavigation('AuthStack');
@@ -66,11 +65,7 @@ export default function ForgotPassword() {
   // ];
 
   return (
-    <View
-      style={{
-        ...styles.container,
-        backgroundColor: theme.colors.background,
-      }}>
+    <BaseLayout extraStyles={{justifyContent: 'center'}}>
       <Text variant="headlineLarge" style={styles.title}>
         {t('forgotPassword.title')}
       </Text>
@@ -103,16 +98,11 @@ export default function ForgotPassword() {
           </Button>
         </View>
       </FormikProvider>
-    </View>
+    </BaseLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: '70%',
-  },
   title: {
     fontWeight: '700',
     marginBottom: 32,
