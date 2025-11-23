@@ -21,9 +21,6 @@ export default function ForgotPassword() {
       onSuccess: res => {
         console.log('Reset Link Sent', res);
       },
-      onError: err => {
-        console.log('Server replied with an error:', err.response);
-      },
       onFinally: () => setLoading(false),
     });
   };

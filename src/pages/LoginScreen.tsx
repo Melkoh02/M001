@@ -22,7 +22,6 @@ export default function LoginScreen() {
     setLoading(true);
     api.login(data).handle({
       onSuccess: res => {
-        console.log('res ===>', res);
         rootStore.userStore.setAuth(res);
       },
       successMessage: t('snackBarMessages.loginSuccess'),

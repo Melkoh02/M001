@@ -24,11 +24,7 @@ export default function SignUpScreen() {
     setLoading(true);
     api.signUp(data).handle({
       onSuccess: res => {
-        console.log(res);
         rootStore.userStore.setAuth(res);
-      },
-      onError: err => {
-        console.log('Server replied with an error:', err.response);
       },
       onFinally: () => setLoading(false),
     });
