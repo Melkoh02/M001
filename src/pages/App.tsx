@@ -3,7 +3,6 @@ import {Platform} from 'react-native';
 import {observer} from 'mobx-react-lite';
 import SplashScreen from 'react-native-splash-screen';
 
-import BaseLayout from '../components/templates/BaseLayout';
 import Routes from '../routes/routes';
 import {useStore} from '../lib/hooks/useStore.ts';
 
@@ -16,9 +15,5 @@ export default observer(function App() {
     }
   }, [userStore.isHydrated]);
 
-  return (
-    <BaseLayout>
-      <Routes />
-    </BaseLayout>
-  );
+  return <Routes />;
 });
