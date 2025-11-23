@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Linking} from 'react-native';
 import {
-  Badge,
   Button,
   Drawer,
   Switch,
@@ -12,133 +11,145 @@ import {useTranslation} from 'react-i18next';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {useTheme} from '../../lib/hooks/useAppTheme.ts';
 import {useStore} from '../../lib/hooks/useStore.ts';
-import {logStore} from '../../lib/helpers/logStore.ts';
 import SelectLanguageModal from '../organisms/selectLanguageModal.tsx';
+import BaseLayout from '../templates/BaseLayout.tsx';
+
+const FlatDrawerSection: React.FC<
+  React.ComponentProps<typeof Drawer.Section>
+> = ({title, children, ...rest}) => (
+  <Drawer.Section {...rest}>
+    {title && (
+      <Text
+        variant="titleSmall"
+        style={{
+          marginLeft: 16,
+          marginBottom: 4,
+        }}>
+        {title}
+      </Text>
+    )}
+    {children}
+  </Drawer.Section>
+);
 
 export default function DrawerItems() {
   const {t} = useTranslation();
   const theme = useTheme();
   const {themeStore, userStore} = useStore();
-  const [drawerItemIndex, setDrawerItemIndex] = React.useState<number>(0);
   const [selectLanguageModalVisible, setSelectLanguageModalVisible] =
     React.useState<boolean>(false);
 
   const isDarkTheme = theme.scheme === 'dark';
 
-  const _setDrawerItem = (index: number) => setDrawerItemIndex(index);
+  const onOpen = (url: string) => Linking.openURL(url);
 
   const DrawerItemsData = [
     {
-      label: 'Inbox',
-      icon: 'inbox',
       key: 0,
-      right: () => <Text variant="labelLarge">44</Text>,
+      label: t('drawer.links.github'),
+      icon: 'github',
+      onPress: () => onOpen('https://github.com/Melkoh02/'),
     },
     {
-      label: 'Starred',
-      icon: 'star',
       key: 1,
-      right: ({color}: {color: string}) => (
-        <Badge
-          visible
-          size={8}
-          style={[styles.badge, {backgroundColor: color}]}
-        />
-      ),
+      label: t('drawer.links.template'),
+      icon: 'source-repository',
+      onPress: () => onOpen('https://github.com/Melkoh02/M001'),
     },
-    {label: 'Sent mail', icon: 'send', key: 2},
-    {label: 'Colored label', icon: 'palette', key: 3},
     {
-      label: 'A very long title that will be truncated',
-      icon: 'delete',
+      key: 2,
+      label: t('drawer.links.contact'),
+      icon: 'email',
+      onPress: () => onOpen('mailto:contact@melkoh.dev'),
+    },
+    {
+      key: 3,
+      label: t('drawer.links.newsApi'),
+      icon: 'newspaper-variant-outline',
+      onPress: () => onOpen('https://newsapi.org/docs'),
+    },
+    {
       key: 4,
-      right: () => <Badge visible size={8} style={styles.badge} />,
+      label: t('drawer.links.pokeApi'),
+      icon: 'pokeball',
+      onPress: () => onOpen('https://pokeapi.co/docs/v2'),
     },
   ];
 
   return (
-    <DrawerContentScrollView
-      alwaysBounceVertical={false}
-      contentContainerStyle={{
-        ...styles.contentContainer,
-        backgroundColor: theme.colors.surface,
-      }}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'space-between',
-        }}>
-        <View>
-          <Drawer.Section title="Example items">
-            {DrawerItemsData.map((props, index) => (
+    <BaseLayout>
+      <DrawerContentScrollView
+        alwaysBounceVertical={false}
+        style={styles.noPadding}
+        contentContainerStyle={{...styles.noPadding, flexGrow: 1}}>
+        <View
+          style={{
+            flexGrow: 1,
+            justifyContent: 'space-between',
+          }}>
+          <View>
+            <FlatDrawerSection
+              showDivider={true}
+              title={t('drawer.links.title', 'Links')}>
+              {DrawerItemsData.map(({key, ...item}, index) => (
+                <Drawer.Item
+                  style={styles.noMargin}
+                  key={key}
+                  {...item}
+                  onPress={() => {
+                    item.onPress?.();
+                  }}
+                />
+              ))}
+            </FlatDrawerSection>
+            <FlatDrawerSection
+              showDivider={true}
+              title={t('drawer.preferences')}>
               <Drawer.Item
-                {...props}
-                key={props.key}
-                active={drawerItemIndex === index}
-                onPress={() => _setDrawerItem(index)}
+                style={styles.noMargin}
+                onPress={() => setSelectLanguageModalVisible(true)}
+                label={t('drawer.language')}
               />
-            ))}
-          </Drawer.Section>
-          <Drawer.Section title={t('drawer.preferences')}>
-            <Drawer.Item
-              icon={'earth'}
-              onPress={() => setSelectLanguageModalVisible(true)}
-              label={t('drawer.language')}
-            />
-            <TouchableRipple onPress={themeStore.toggle}>
-              <View style={styles.preference}>
-                <Text variant="labelLarge">{t('drawer.darkTheme')}</Text>
-                <View pointerEvents="none">
-                  <Switch value={isDarkTheme} />
+              <TouchableRipple onPress={themeStore.toggle}>
+                <View style={styles.preference}>
+                  <Text variant="labelLarge">{t('drawer.darkTheme')}</Text>
+                  <View pointerEvents="none">
+                    <Switch value={isDarkTheme} />
+                  </View>
                 </View>
-              </View>
-            </TouchableRipple>
-          </Drawer.Section>
-
-          <Drawer.Section title={'Dev tools'} showDivider={true}>
-            <TouchableRipple onPress={logStore}>
-              <View style={{paddingHorizontal: 28}}>
-                <Text variant="labelLarge">Log store values</Text>
-              </View>
-            </TouchableRipple>
-          </Drawer.Section>
-        </View>
-
-        <Drawer.Section showDivider={false}>
-          <Button
-            onPress={userStore.logout}
-            textColor={theme.colors.error}
-            style={styles.logout}>
+              </TouchableRipple>
+            </FlatDrawerSection>
+          </View>
+          <Button onPress={userStore.logout} textColor={theme.colors.error}>
             {t('settings.logout')}
           </Button>
-        </Drawer.Section>
+        </View>
         <SelectLanguageModal
           isVisible={selectLanguageModalVisible}
           onDismiss={() => setSelectLanguageModalVisible(false)}
         />
-      </View>
-    </DrawerContentScrollView>
+      </DrawerContentScrollView>
+    </BaseLayout>
   );
 }
 
 const styles = StyleSheet.create({
+  noPadding: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingStart: 0,
+    paddingEnd: 0,
+  },
+  noMargin: {
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    marginTop: 0,
+  },
   preference: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 28,
-    height: 56,
-  },
-  contentContainer: {
-    flexGrow: 1,
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  badge: {
-    alignSelf: 'center',
-  },
-  logout: {
-    paddingBottom: 16,
+    paddingHorizontal: 16,
   },
 });

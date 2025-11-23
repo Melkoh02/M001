@@ -19,7 +19,7 @@ type BaseLayoutProps = {
   disableKeyboardDismiss?: boolean;
 };
 
-const insetsEdges: Edge[] = ['top'];
+const insetsEdges: Edge[] = ['top', 'bottom'];
 
 const BaseLayout = ({
   disableKeyboardDismiss,
@@ -39,7 +39,6 @@ const BaseLayout = ({
         edges={insetsEdges}
         style={{
           flex: 1,
-          paddingHorizontal: 16,
           backgroundColor: theme.colors.background,
         }}>
         <StatusBar
@@ -48,7 +47,9 @@ const BaseLayout = ({
         <TouchableWithoutFeedback
           onPress={handleBackgroundPress}
           accessible={false}>
-          <View style={[{flex: 1}, extraStyles]}>{children}</View>
+          <View style={[{flex: 1, paddingHorizontal: 18}, extraStyles]}>
+            {children}
+          </View>
         </TouchableWithoutFeedback>
       </SafeAreaView>
     </SafeAreaProvider>

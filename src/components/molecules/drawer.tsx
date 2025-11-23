@@ -11,7 +11,7 @@ const MainDrawer = () => {
       drawerContent={() => <DrawerItems />}
       screenOptions={{
         headerShown: false,
-        drawerStyle: {width: '50%'},
+        drawerStyle: {width: '70%'},
       }}>
       <Drawer.Screen name="MainTabs" component={TabNavigator} />
     </Drawer.Navigator>
