@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {
   Keyboard,
   StatusBar,
@@ -28,10 +28,10 @@ const BaseLayout = ({
 }: BaseLayoutProps) => {
   const theme = useTheme();
 
-  const handleBackgroundPress = () => {
+  const handleBackgroundPress = useCallback(() => {
     if (disableKeyboardDismiss) return;
     Keyboard.dismiss();
-  };
+  }, [disableKeyboardDismiss]);
 
   return (
     <SafeAreaProvider>

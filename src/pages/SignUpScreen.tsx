@@ -50,15 +50,13 @@ export default function SignUpScreen() {
     ),
   });
 
-  const onSignUpPress = () => {
-    signUp(formik.values);
-    Keyboard.dismiss();
-  };
-
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: onSignUpPress,
+    onSubmit: values => {
+      signUp(values);
+      Keyboard.dismiss();
+    },
   });
 
   return (
@@ -88,7 +86,7 @@ export default function SignUpScreen() {
           />
           <Button
             mode="contained"
-            onPress={onSignUpPress}
+            onPress={() => formik.handleSubmit()}
             loading={loading}
             disabled={loading}
             style={styles.button}>

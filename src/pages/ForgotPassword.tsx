@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Keyboard, StyleSheet, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import useApi from '../lib/hooks/useApi.ts';
 import {Field, FormikProvider, useFormik} from 'formik';
@@ -38,14 +38,13 @@ export default function ForgotPassword() {
       .required('Email is a required field'),
   });
 
-  const onSubmitPress = () => {
-    forgotPassword(formik.values);
-  };
-
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: onSubmitPress,
+    onSubmit: values => {
+      forgotPassword(values);
+      Keyboard.dismiss();
+    },
   });
 
   // dummy data for the example implementation of FormikSelectInput
@@ -86,7 +85,7 @@ export default function ForgotPassword() {
           {/*/>*/}
           <Button
             mode="contained"
-            onPress={onSubmitPress}
+            onPress={() => formik.handleSubmit()}
             loading={loading}
             style={styles.button}>
             {!loading && t('forgotPassword.submitButton')}

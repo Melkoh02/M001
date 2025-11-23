@@ -43,11 +43,6 @@ export default function LoginScreen() {
     password: Yup.string().required('Password is a required field'),
   });
 
-  const onLoginPress = () => {
-    login(formik.values);
-    Keyboard.dismiss();
-  };
-
   const onContinuePress = () => {
     // quick and dirty guest implementation, for demo only, a more robust
     // implementation is needed for prod.
@@ -70,7 +65,10 @@ export default function LoginScreen() {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
-    onSubmit: onLoginPress,
+    onSubmit: values => {
+      login(values);
+      Keyboard.dismiss();
+    },
   });
 
   return (
@@ -95,7 +93,7 @@ export default function LoginScreen() {
           <View style={styles.actionsRow}>
             <Button
               mode="contained"
-              onPress={onLoginPress}
+              onPress={() => formik.handleSubmit()}
               loading={loading}
               disabled={loading}
               style={[styles.button, styles.halfButton]}
