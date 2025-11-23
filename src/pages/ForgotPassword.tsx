@@ -5,9 +5,10 @@ import useApi from '../lib/hooks/useApi.ts';
 import {Field, FormikProvider, useFormik} from 'formik';
 import * as Yup from 'yup';
 import FormikEmailInput from '../components/formik/FormikEmailInput.tsx';
-import {Button, Text} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {useNavigation} from '../lib/hooks/useNavigation.ts';
 import BaseLayout from '../components/templates/BaseLayout.tsx';
+import AuthHeader from '../components/molecules/AuthHeader.tsx';
 
 export default function ForgotPassword() {
   const {t} = useTranslation();
@@ -62,9 +63,7 @@ export default function ForgotPassword() {
 
   return (
     <BaseLayout extraStyles={{justifyContent: 'center'}}>
-      <Text variant="headlineLarge" style={styles.title}>
-        {t('forgotPassword.title')}
-      </Text>
+      <AuthHeader title={t('forgotPassword.title')} />
       <FormikProvider value={formik}>
         <View style={styles.fields}>
           <Field

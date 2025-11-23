@@ -11,6 +11,7 @@ import {Button, Text} from 'react-native-paper';
 import {useStore} from '../lib/hooks/useStore.ts';
 import {useNavigation} from '@react-navigation/native';
 import BaseLayout from '../components/templates/BaseLayout.tsx';
+import AuthHeader from '../components/molecules/AuthHeader.tsx';
 
 export default function SignUpScreen() {
   const theme = useTheme();
@@ -57,9 +58,7 @@ export default function SignUpScreen() {
 
   return (
     <BaseLayout extraStyles={{justifyContent: 'center'}}>
-      <Text variant="headlineLarge" style={styles.title}>
-        {t('signUp.title')}
-      </Text>
+      <AuthHeader title={t('signUp.title')} />
       <FormikProvider value={formik}>
         <View style={styles.fields}>
           <Field
@@ -103,10 +102,6 @@ export default function SignUpScreen() {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontWeight: '700',
-    marginBottom: 32,
-  },
   fields: {
     gap: 20,
   },
